@@ -1,0 +1,12 @@
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# ESLint cache (if you use caching)
+.eslintcache
+
+# VS Code settings
+.vscode/
+
+# Environment variables (if you have any)
+.env

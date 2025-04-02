@@ -1,0 +1,57 @@
+/* Header Styles */
+header {
+    height: 40vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #ccc;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+/* General Styles */
+body {
+    background-color: #224;
+    height: 100vh;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Anchor Styles */
+a {
+    padding: 20px;
+    width: 25%;
+    font-size: 3rem;
+    color: #ccc;
+    background-color: midnightblue;
+    border: 3px solid transparent;
+    border-radius: 70px;
+    margin: 20px;
+    text-decoration: none;
+    text-align: center;
+}
+
+a:hover {
+    border: 3px solid white;
+    cursor: pointer;
+    background-color: rgb(82, 82, 184);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    h1 {
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    a {
+        width: 70%;
+    }
+}

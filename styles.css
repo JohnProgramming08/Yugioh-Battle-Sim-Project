@@ -1,0 +1,8 @@
+/* Global Styles */
+* {
+    margin: none;
+    padding: none;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    border: none;
+}
