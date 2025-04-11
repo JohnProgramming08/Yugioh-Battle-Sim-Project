@@ -1,7 +1,7 @@
 const historySection = document.getElementById('history-section');
 const cardDiv = document.getElementById('card-div');
-const blueEyesHealth = document.getElementById('enemy-health');
-const darkMagicianHealth = document.getElementById('player-health');
+const enemyHealth = document.getElementById('enemy-health');
+const playerHealth = document.getElementById('player-health');
 const resetDiv = document.getElementById('restart-div');
 const winLose = document.getElementById('win-lose');
 const filter = document.getElementById('filter');
@@ -90,7 +90,7 @@ class Battle {
             successorSoul: {
                 name: 'Successor Soul',
                 description: 'Use the power of fallen dragons to lay waste to your enemy.',
-                damage: 600,
+                damage: 650,
                 cooldown: 2,
                 currentCooldown: 0,
                 type: 'attack'
@@ -104,14 +104,14 @@ class Battle {
                 type: 'attack'
             }
         }
-        this.blueEyes = new Monster(2500, 800, blueEyesAbilities, 'Blue Eyes White Dragon');
+        this.enemy = new Monster(2500, 800, blueEyesAbilities, 'Blue Eyes White Dragon');
     }
 
     chooseFirstTurn() {
-        if (this.player.speed > this.blueEyes.speed) {
+        if (this.player.speed > this.enemy.speed) {
             return this.player;
         }
-        return this.blueEyes;
+        return this.enemy;
     }
 
     // Identify the ability chosen by the user
@@ -120,7 +120,7 @@ class Battle {
         const abilityName = card.dataset.name;
         for (let move in this.player.abilities) {
             if (abilityName === move) {
-                return this.darkMagician.abilities[move];
+                return this.player.abilities[move];
             }
         }
     }
@@ -141,16 +141,16 @@ class Battle {
     calculateUserDamage(event) {
         const ability = this.userChooseAbility(event);
         if (ability.currentCooldown === 0 || ability.currentCooldown === ability.cooldown) {
-            this.blueEyes.health -= ability.damage;
-            this.blueEyes.health = this.blueEyes.health < 0 ? 0 : this.blueEyes.health;
+            this.enemy.health -= ability.damage;
+            this.enemy.health = this.enemy.health < 0 ? 0 : this.enemy.health;
             ability.currentCooldown = 0;
 
-            this.updateCooldowns(this.darkMagician, ability);
+            this.updateCooldowns(this.player, ability);
 
             cardDiv.innerHTML = '';
-            this.darkMagician.displayAbilities();
-            blueEyesHealth.innerText = `Enemy Health: ${this.blueEyes.health}`;
-            historySection.innerHTML += `<p class="player-move">\n${this.darkMagician.name} used ${ability.name} against ${this.blueEyes.name}, dealing ${ability.damage} damage.</p>`;
+            this.player.displayAbilities();
+            enemyHealth.innerText = `Enemy Health: ${this.enemy.health}`;
+            historySection.innerHTML += `<p class="player-move">\n${this.player.name} used ${ability.name} against ${this.enemy.name}, dealing ${ability.damage} damage.</p>`;
             this.playBattle();
         }
     }
@@ -160,15 +160,15 @@ class Battle {
         while (true) {
             const randomNum = Math.floor(Math.random() * 3);
             let count = 0;
-            for (let move in this.blueEyes.abilities) {
-                const ability = this.blueEyes.abilities[move];
+            for (let move in this.enemy.abilities) {
+                const ability = this.enemy.abilities[move];
                 if (count === randomNum && (ability.currentCooldown === 0 || ability.currentCooldown === ability.cooldown)) {
-                    this.darkMagician.health -= ability.damage;
-                    this.darkMagician.health = this.darkMagician.health < 0 ? 0 : this.darkMagician.health;
+                    this.player.health -= ability.damage;
+                    this.player.health = this.player.health < 0 ? 0 : this.player.health;
                     ability.currentCooldown = 0;
-                    this.updateCooldowns(this.blueEyes, ability);
-                    darkMagicianHealth.innerText = `Your Health: ${this.darkMagician.health}`;
-                    historySection.innerHTML += `<p class="enemy-move"> ${this.blueEyes.name} used ${ability.name} against ${this.darkMagician.name}, dealing ${ability.damage} damage.</p>`;
+                    this.updateCooldowns(this.enemy, ability);
+                    playerHealth.innerText = `Your Health: ${this.player.health}`;
+                    historySection.innerHTML += `<p class="enemy-move"> ${this.enemy.name} used ${ability.name} against ${this.player.name}, dealing ${ability.damage} damage.</p>`;
                     this.playBattle();
                     return;
                 }
@@ -182,16 +182,16 @@ class Battle {
         this.firstTurn = this.turn === 0 ? this.chooseFirstTurn() : this.firstTurn;
         this.turn++;
         cardDiv.innerHTML = '';
-        this.darkMagician.displayAbilities();
+        this.player.displayAbilities();
         const cards = Array.from(document.getElementsByClassName('card'));
 
-        if (this.firstTurn === this.darkMagician && this.darkMagician.health > 0 && this.blueEyes.health > 0) {
+        if (this.firstTurn === this.player && this.player.health > 0 && this.enemy.health > 0) {
             // Player turn
             historySection.innerHTML += `<p>-----TURN ${this.turn}----- YOUR TURN </p>`;
             cardDiv.innerHTML = '';
-            this.darkMagician.displayAbilities();
-            this.firstTurn = this.blueEyes;
-        } else if (this.darkMagician.health === 0) {
+            this.player.displayAbilities();
+            this.firstTurn = this.enemy;
+        } else if (this.player.health === 0) {
             // Lose
             winLose.innerText = 'YOU LOSE!';
             cards.forEach(card => {
@@ -202,7 +202,7 @@ class Battle {
             filter.classList.add('screen-filter');
             filter.classList.add('screen-filter-red');
             resetDiv.style.display = 'flex';
-        } else if (this.blueEyes.health === 0) {
+        } else if (this.enemy.health === 0) {
             // Win
             winLose.innerText = 'YOU WIN!';
             cards.forEach(card => {
@@ -221,7 +221,7 @@ class Battle {
                 card.disabled = true;
                 card.classList.remove('card-hover');
             });
-            this.firstTurn = this.darkMagician;
+            this.firstTurn = this.player;
         }
     }
 }
