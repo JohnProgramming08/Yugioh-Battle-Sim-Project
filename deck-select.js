@@ -240,11 +240,17 @@ const monsterStats = {
     }
 }
 const cards = document.getElementById('cards');
+const drawHighlight = document.getElementById('draw-highlight');
+const backCardImage = 'https://th.bing.com/th/id/OIP.0x4CeXmIq4eMaU3Xqgo2lAAAAA?w=203&h=295&c=7&r=0&o=5&dpr=1.5&pid=1.7';
+const faceDownCard = document.getElementById('face-down-card');
+const drawCard = document.getElementById('draw');
+const nextPageBtn = document.getElementById('next-page');
 
+// Add all of the monster cards to the page
 for (const key in monsterStats) {
     const monster = monsterStats[key];
     const card = `<div class="monster-card">
-                <img src=${monster.image}>
+                <img id="image" src=${monster.image}>
                 <div class="monster-info">
                     <p>Health: ${monster.health}</p>
                     <p>${monster.move1.name}: ${monster.move1.damage} damage</p>
@@ -254,3 +260,68 @@ for (const key in monsterStats) {
             </div>`;
     cards.innerHTML += card;
 }
+const monsterCards = document.querySelectorAll('.monster-card');
+
+class Draw {
+    constructor() {
+        this.chosenCards = [];
+    }
+
+    // Control the flip animation for drawing a card
+    flipCard() {
+        // Flip the face down card revealing the chosen card
+        drawCard.classList.add('flip');
+        setTimeout (() => {
+            faceDownCard.src = `${this.chosenCard.image}`;
+            drawCard.classList.remove('flip');
+            drawHighlight.style.display = 'none';
+        }, 400);
+
+        // Add a border to the chosen card
+        for (const card of monsterCards) {
+            const imageTag = card.querySelector('#image');
+            if (imageTag.src == this.chosenCard.image) {
+                card.classList.add('selected');
+            }
+        }
+
+        // Flip the card back over to be drawn again
+        setTimeout(() => {
+            drawCard.classList.add('flip');
+        }, 2000);
+        setTimeout(() => {
+            faceDownCard.src = backCardImage;
+        }, 2400);
+        setTimeout(() => {
+            drawCard.classList.remove('flip');
+            if (this.chosenCards.length < 5) {
+                drawHighlight.style.display = 'block';
+            } else {
+                nextPageBtn.style.display = 'block';
+            }
+        }, 2400);
+    }
+
+    // Draw a random card
+    randomCard() {
+        const num = Math.floor(Math.random() * 8);
+        let count = 0;
+        for (const key in monsterStats) {
+            if (count === num) {
+                this.chosenCard = monsterStats[key];
+                if (this.chosenCards.includes(this.chosenCard)) {
+                    this.randomCard();
+                } else {
+                    this.chosenCards.push(this.chosenCard);
+                    this.flipCard();
+                }
+            }
+            count++;
+        }
+    }
+}
+
+const draw = new Draw();
+drawHighlight.addEventListener('click', () => {
+    draw.randomCard();
+})

@@ -31,6 +31,7 @@ main {
     justify-content: center;
     align-content: flex-start;
     background-color: black;
+    color: white;
 }
 
 .monster-card {
@@ -84,6 +85,9 @@ main {
     width: 30%;
     height: 100%;
     background-color: grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #draw {
@@ -94,6 +98,7 @@ main {
     align-items: center;
     padding-top: 10px;
     position: relative;
+    transition: 0.8s ease-in-out;
 }
 
 #draw img, #draw-highlight {
@@ -109,7 +114,7 @@ main {
     background-color: blue;
     opacity: 0.3;
     position: absolute; 
-    top: 10; 
+    top: 10px; 
     left: 50%; 
     transform: translateX(-50%); 
     z-index: 10;
@@ -118,6 +123,46 @@ main {
 
 #draw-highlight:hover {
     cursor: pointer;
+}
+
+.selected {
+    transition: 0.8s ease-in;
+    border: 3px solid rgb(151, 39, 185);
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+a {
+    margin-top: 20px;
+    font-size: 3rem;
+    border-radius: 30px;
+    background-color: blue;
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 20px;
+    margin: auto;
+    border: 5px solid transparent;
+    display: none;
+}
+
+a:hover {
+    cursor: pointer;
+    animation: border-flash 2s infinite;
+
+}
+
+@keyframes border-flash {
+    0% {
+        border: 5px solid gold;
+    }
+    50% {
+        border: 5px solid white;
+    }
+    100% {
+        border: 5px solid gold;
+    }
 }
 
 @keyframes flash {
