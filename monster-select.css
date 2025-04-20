@@ -31,7 +31,7 @@ main {
 }
 
 .monster-card {
-    position: relative; /* Set relative positioning for the container */
+    position: relative; 
     width: 20vw;
     color: #ccc;
     font-size: 3rem;
@@ -40,6 +40,13 @@ main {
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    margin: 7px;
+}
+
+.monster-card:hover {
+    cursor: pointer;
+    border: 5px solid white;
+    border-radius: 10px;
 }
 
 .monster-card img {
@@ -49,14 +56,14 @@ main {
 
 .monster-info {
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.9rem;
     overflow: wrap;
     position: absolute; 
     left: 50%; 
-    bottom: calc(3rem + 10px);
+    bottom: 0;
     transform: translate(-50%, 0); 
-    background-color: rgba(0, 0, 0, 0.9); 
-    color: white; 
+    background-color: whitesmoke; 
+    color: black; 
     padding: 10px;
     border-radius: 5px;
     display: none; 
@@ -64,21 +71,19 @@ main {
     z-index: 10;
 }
 
-.info:hover + .monster-info {
+.monster-card img:hover + .monster-info {
     display: block;
 }
 
-.info:hover {
-    color: blue;
-    transition: 0.25s ease-in-out;
+.monster-info:hover {
+    display: block;
+    cursor: pointer;
 }
 
-p {
+.monster-info p {
     border: 1px solid grey;
 }
 
-i {
-    font-size: 3rem;
-    padding: 5px;
-    transition: 0.25s ease-in-out;
+.selected {
+    transform: translateY(-20px);
 }

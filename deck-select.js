@@ -2,6 +2,7 @@ const monsterStats = {
     darkMagicianStats: {
         image: 'https://vignette1.wikia.nocookie.net/yugioh/images/b/b3/DarkMagician-SD6-EN-C-UE.png/revision/latest?cb=20160331211958',
         health: 2100,
+        maxHealth: 2100,
         speed: 1000,
         move1: {
             name: 'Dark Magic Attack',
@@ -32,6 +33,7 @@ const monsterStats = {
     blueEyesStats: {
         image: 'https://dacardworld2.imgix.net/23584.jpg?auto=format%2Ccompress&fm=jpg&h=1800&ixlib=php-1.2.1&w=1800&s=18a4edeacc35f29f0fafc6395f1b7538',
         health: 2500,
+        maxHealth: 2500,
         speed: 800,
         move1: {
             name: 'White Lightning',
@@ -62,6 +64,7 @@ const monsterStats = {
     RedEyesStats: {
         image: 'https://product-images.tcgplayer.com/491813.jpg',
         health: 2000,
+        maxHealth: 2000,
         speed: 900,
         move1: {
             name: 'Red Eyes Roar',
@@ -92,6 +95,7 @@ const monsterStats = {
     diabelstarStats: {
         image: 'https://www.cardtrader.com/uploads/blueprints/image/264491/show_diabellstar-the-black-witch-secret-rare-age-of-overlord.jpg',
         health: 2000,
+        maxHealth: 2000,
         speed: 1100,
         move1: {
             name: 'Seeker Of Sinful Spoils',
@@ -122,6 +126,7 @@ const monsterStats = {
     rafaleStats: {
         image: 'https://th.bing.com/th/id/OIP.nPHfC2qqBy4iK3462m8EfAAAAA?w=203&h=295&c=7&r=0&o=5&dpr=1.5&pid=1.7',
         health: 2200,
+        maxHealth: 2200,
         speed: 700,
         move1: {
             name: 'Mayhem Fur Hire',
@@ -152,6 +157,7 @@ const monsterStats = {
     blackLusterSoldierStats: {
         image: 'https://th.bing.com/th/id/OIP.PG3eyssI7qxmviuDHv5j2AHaKv?w=203&h=295&c=7&r=0&o=5&dpr=1.5&pid=1.7',
         health: 2500,
+        maxHealth: 2500,
         speed: 800,
         move1: {
             name: 'Chaos Form',
@@ -182,6 +188,7 @@ const monsterStats = {
     kashtiraUnicornStats: {
         image: 'https://th.bing.com/th/id/OIP.o9z-2tyT-TOK0N8hmYixigHaK3?w=203&h=298&c=7&r=0&o=5&dpr=1.5&pid=1.7',
         health: 2100,
+        maxHealth: 2100,
         speed: 1000,
         move1: {
             name: 'Kashtiratheosis',
@@ -212,6 +219,7 @@ const monsterStats = {
     heroNeosStats: {
         image: 'https://th.bing.com/th/id/OIP.vREM0e00bkRL2NLloK7LZAHaK3?w=203&h=298&c=7&r=0&o=5&dpr=1.5&pid=1.7',
         health: 2000,
+        maxHealth: 2000,
         speed: 900,
         move1: {
             name: 'Neos Force',
@@ -298,6 +306,7 @@ class Draw {
                 drawHighlight.style.display = 'block';
             } else {
                 nextPageBtn.style.display = 'block';
+                localStorage.setItem('chosenCards', JSON.stringify(this.chosenCards));
             }
         }, 2400);
     }
