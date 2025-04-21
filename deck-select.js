@@ -247,6 +247,7 @@ const monsterStats = {
         }
     }
 }
+localStorage.setItem('allCards', JSON.stringify(monsterStats));
 const cards = document.getElementById('cards');
 const drawHighlight = document.getElementById('draw-highlight');
 const backCardImage = 'https://th.bing.com/th/id/OIP.0x4CeXmIq4eMaU3Xqgo2lAAAAA?w=203&h=295&c=7&r=0&o=5&dpr=1.5&pid=1.7';

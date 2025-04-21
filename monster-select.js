@@ -1,5 +1,6 @@
 const chosenCards = JSON.parse(localStorage.getItem('chosenCards'));
 const cards = document.getElementById('cards');
+let selectedMonster;
 
 // Add all of the monster cards to the page
 for (const key in chosenCards) {
@@ -16,6 +17,7 @@ for (const key in chosenCards) {
     cards.innerHTML += card;
 }
 
+// Indicate which card is selected
 const monsterCards = document.querySelectorAll('.monster-card');
 for (const card of monsterCards) {
     card.addEventListener('click', (e) => {
@@ -27,5 +29,15 @@ for (const card of monsterCards) {
             card.classList.remove('selected');
         }
         targetEl.classList.add('selected');
+        
+        // Keep track of which card has been selected
+        for (const key in chosenCards) {
+            const image = chosenCards[key].image;
+            const cardImage = targetEl.querySelector('#image');
+            if (image === cardImage.src) {
+                selectedMonster = chosenCards[key];
+                localStorage.setItem('selectedMonster', JSON.stringify(selectedMonster));
+            }
+        }
     });
 }
