@@ -1,5 +1,6 @@
 const monsterStats = {
     darkMagicianStats: {
+        name: 'Dark Magician',
         image: 'https://vignette1.wikia.nocookie.net/yugioh/images/b/b3/DarkMagician-SD6-EN-C-UE.png/revision/latest?cb=20160331211958',
         health: 2100,
         maxHealth: 2100,
@@ -31,6 +32,7 @@ const monsterStats = {
     },
 
     blueEyesStats: {
+        name: 'Blue Eyes White Dragon',
         image: 'https://dacardworld2.imgix.net/23584.jpg?auto=format%2Ccompress&fm=jpg&h=1800&ixlib=php-1.2.1&w=1800&s=18a4edeacc35f29f0fafc6395f1b7538',
         health: 2500,
         maxHealth: 2500,
@@ -62,6 +64,7 @@ const monsterStats = {
     },
 
     RedEyesStats: {
+        name: 'Red Eyes Black Dragon',
         image: 'https://product-images.tcgplayer.com/491813.jpg',
         health: 2000,
         maxHealth: 2000,
@@ -93,6 +96,7 @@ const monsterStats = {
     },
     
     diabelstarStats: {
+        name: 'Diabellstar The Black Witch',        
         image: 'https://www.cardtrader.com/uploads/blueprints/image/264491/show_diabellstar-the-black-witch-secret-rare-age-of-overlord.jpg',
         health: 2000,
         maxHealth: 2000,
@@ -124,6 +128,7 @@ const monsterStats = {
     },
 
     rafaleStats: {
+        name: 'Rafale Champion Fur Hire',
         image: 'https://th.bing.com/th/id/OIP.nPHfC2qqBy4iK3462m8EfAAAAA?w=203&h=295&c=7&r=0&o=5&dpr=1.5&pid=1.7',
         health: 2200,
         maxHealth: 2200,
@@ -155,6 +160,7 @@ const monsterStats = {
     },
 
     blackLusterSoldierStats: {
+        name: 'Black Luster Soldier',
         image: 'https://th.bing.com/th/id/OIP.PG3eyssI7qxmviuDHv5j2AHaKv?w=203&h=295&c=7&r=0&o=5&dpr=1.5&pid=1.7',
         health: 2500,
         maxHealth: 2500,
@@ -186,6 +192,7 @@ const monsterStats = {
     },
 
     kashtiraUnicornStats: {
+        name: 'Kashtira Unicorn',
         image: 'https://th.bing.com/th/id/OIP.o9z-2tyT-TOK0N8hmYixigHaK3?w=203&h=298&c=7&r=0&o=5&dpr=1.5&pid=1.7',
         health: 2100,
         maxHealth: 2100,
@@ -194,7 +201,7 @@ const monsterStats = {
             name: 'Kashtiratheosis',
             description: 'Use Kashtira Unicorns power to crush your opponents',
             damage: 700,
-            coldown: 2,
+            cooldown: 2,
             currentCooldown: 0,
             type: 'attack'
         },
@@ -208,7 +215,7 @@ const monsterStats = {
         },
         move3: {
             name: 'Kashtira Overlap',
-            decription: 'Use Kashtira Unicorns abilities reduce your enemies to dust',
+            description: 'Use Kashtira Unicorns abilities reduce your enemies to dust',
             damage: 600,
             cooldown: 1,
             currentCooldown: 0,
@@ -217,13 +224,14 @@ const monsterStats = {
     },
 
     heroNeosStats: {
+        name: 'Elemental Hero Neos',
         image: 'https://th.bing.com/th/id/OIP.vREM0e00bkRL2NLloK7LZAHaK3?w=203&h=298&c=7&r=0&o=5&dpr=1.5&pid=1.7',
         health: 2000,
         maxHealth: 2000,
         speed: 900,
         move1: {
             name: 'Neos Force',
-            decription: 'Use the great strength of Neos to anhilate your opponent',
+            description: 'Use the great strength of Neos to anhilate your opponent',
             damage: 850,
             cooldown: 3,
             currentCooldown: 0,
@@ -331,6 +339,7 @@ class Draw {
     }
 }
 
+localStorage.setItem('enemyMonster', 'Drugs');
 const draw = new Draw();
 drawHighlight.addEventListener('click', () => {
     draw.randomCard();
