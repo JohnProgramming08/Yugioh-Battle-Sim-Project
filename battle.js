@@ -5,6 +5,12 @@ const playerHealth = document.getElementById('player-health');
 const resetDiv = document.getElementById('restart-div');
 const winLose = document.getElementById('win-lose');
 const filter = document.getElementById('filter');
+const enemyImg = document.getElementById('enemy-img');
+const playerImg = document.getElementById('player-img');
+const startText = document.getElementById('start-text');
+const playerMonster = JSON.parse(localStorage.getItem('selectedMonster'));
+const enemyMonster = JSON.parse(localStorage.getItem('enemyMonster'));
+const chosenCards = JSON.parse(localStorage.getItem('chosenCards'));
 
 class Monster {
     // Assign properties
@@ -43,68 +49,42 @@ class Monster {
         const abilityCards = Array.from(document.getElementsByClassName('card'));
         abilityCards.forEach(card => card.addEventListener('click', event => battle.calculateUserDamage(event)));
     }
-
 }
 
 class Battle {
     // create the player and enemy monster
     constructor() {
         this.turn = 0;
-        const darkMagicianAbilities = {
-            darkMagicAttack: {
-                name: 'Dark Magic Attack',
-                description: 'A powerful blast of pure dark magic concentrated on your enemy.',
-                damage: 700,
-                cooldown: 2,
-                currentCooldown: 0,
-                type: 'attack'
-            },
-            darkMagicTwinBurst: {
-                name: 'Dark Magic Twin Burst',
-                description: 'Borrow some of Dark Magician Girls power to anhilate your enemy.',
-                damage: 900,
-                cooldown: 3,
-                currentCooldown: 0,
-                type: 'attack'
-            },
-            darkMagicalCircle: {
-                name: 'Dark Magical Circle',
-                description: 'Surround and trap your opponent with dark magic as it closes in for a lethal slice.',
-                damage: 500,
-                cooldown: 1,
-                currentCooldown: 0,
-                type: 'attack'
-            }
-        }
-        this.player = new Monster(2100, 1000, darkMagicianAbilities, 'Dark Magician');
 
-        const blueEyesAbilities = {
-            whiteLightning: {
-                name: 'White Lightning',
-                description: 'Use the dragons power over lightning to destroy your opponent.',
-                damage: 800,
-                cooldown: 3,
-                currentCooldown: 0,
-                type: 'attack'
-            },
-            successorSoul: {
-                name: 'Successor Soul',
-                description: 'Use the power of fallen dragons to lay waste to your enemy.',
-                damage: 650,
-                cooldown: 2,
-                currentCooldown: 0,
-                type: 'attack'
-            },
-            burstStreamOfDestruction: {
-                name: 'Burst Stream Of Destruction',
-                description: 'Use Blue Eyes White Dragons raw power to destroy your opponents',
-                damage: 550,
-                cooldown: 1,
-                currentCooldown: 0,
-                type: 'attack'
+        const playerAbilities = {
+            move1: playerMonster.move1,
+            move2: playerMonster.move2,
+            move3: playerMonster.move3
+        }
+        playerHealth.innerText = `Your Health: ${playerMonster.health}`;
+        playerImg.src = playerMonster.image;
+        this.player = new Monster(playerMonster.health, playerMonster.speed, playerAbilities, playerMonster.name);
+
+        const enemyAbilities = {
+            move1: enemyMonster.move1,
+            move2: enemyMonster.move2,
+            move3: enemyMonster.move3
+        }
+        enemyHealth.innerText = `Enemy Health: ${enemyMonster.health}`;
+        enemyImg.src = enemyMonster.image;
+        this.enemy = new Monster(enemyMonster.health, enemyMonster.speed, enemyAbilities, enemyMonster.name);
+    }
+
+    updateStorage() {
+        for (const key in chosenCards) {
+            if (chosenCards[key].name === playerMonster.name) {
+                playerMonster.health = this.player.health;
+                chosenCards[key] = playerMonster;
+                localStorage.setItem('chosenCards', JSON.stringify(chosenCards));
+                enemyMonster.health = this.enemy.health;
+                localStorage.setItem('enemyMonster', JSON.stringify(enemyMonster));
             }
         }
-        this.enemy = new Monster(2500, 800, blueEyesAbilities, 'Blue Eyes White Dragon');
     }
 
     chooseFirstTurn() {
@@ -193,6 +173,7 @@ class Battle {
             this.firstTurn = this.enemy;
         } else if (this.player.health === 0) {
             // Lose
+            this.updateStorage();
             winLose.innerText = 'YOU LOSE!';
             cards.forEach(card => {
                 card.disabled = true;
@@ -204,6 +185,7 @@ class Battle {
             resetDiv.style.display = 'flex';
         } else if (this.enemy.health === 0) {
             // Win
+            this.updateStorage();
             winLose.innerText = 'YOU WIN!';
             cards.forEach(card => {
                 card.disabled = true;
@@ -226,5 +208,6 @@ class Battle {
     }
 }
 
+startText.innerText = `The battle begins, you face off against ${enemyMonster.name}!`;
 const battle = new Battle();
 battle.playBattle();
