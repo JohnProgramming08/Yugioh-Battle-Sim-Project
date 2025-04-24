@@ -4,7 +4,8 @@ html, body {
 }
 
 header {
-    background-color: #113;
+    background-color: #636;
+    border-bottom: 2px solid #a5a;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +31,8 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     align-content: flex-start;
-    background-color: black;
+    background-image: url('https://cdn.glitch.global/c3047929-ef70-4941-99a6-ce2fdf88aac9/purpleSpace.jpg?v=1745445395999');
+    background-size: cover;
     color: white;
 }
 
@@ -84,7 +86,8 @@ main {
 #controls {
     width: 30%;
     height: 100%;
-    background-color: grey;
+    background-image: linear-gradient(to right bottom, #cc5588, #964163, #622e41, #331b23, #000000);
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -137,7 +140,7 @@ a {
     margin-top: 20px;
     font-size: 3rem;
     border-radius: 30px;
-    background-color: blue;
+    background-color: hotpink;
     text-decoration: none;
     color: whitesmoke;
     padding: 20px;
@@ -154,13 +157,13 @@ a:hover {
 
 @keyframes border-flash {
     0% {
-        border: 5px solid gold;
+        border: 5px solid black;
     }
     50% {
-        border: 5px solid white;
+        border: 5px solid pink;
     }
     100% {
-        border: 5px solid gold;
+        border: 5px solid black;
     }
 }
 

@@ -8,9 +8,11 @@ const filter = document.getElementById('filter');
 const enemyImg = document.getElementById('enemy-img');
 const playerImg = document.getElementById('player-img');
 const startText = document.getElementById('start-text');
+const defeatedMonstersText = document.getElementById('monsters-defeated');
 const playerMonster = JSON.parse(localStorage.getItem('selectedMonster'));
 const enemyMonster = JSON.parse(localStorage.getItem('enemyMonster'));
 const chosenCards = JSON.parse(localStorage.getItem('chosenCards'));
+const defeatedMonsters = JSON.parse(localStorage.getItem('defeatedMonsters'));
 
 class Monster {
     // Assign properties
@@ -52,7 +54,7 @@ class Monster {
 }
 
 class Battle {
-    // create the player and enemy monster
+    // Create the player and enemy monster
     constructor() {
         this.turn = 0;
 
@@ -76,6 +78,9 @@ class Battle {
     }
 
     updateStorage() {
+      if (this.enemy.health === 0) {
+          localStorage.setItem('defeatedMonsters', defeatedMonsters + 1);
+      }
         for (const key in chosenCards) {
             if (chosenCards[key].name === playerMonster.name) {
                 playerMonster.health = this.player.health;
@@ -187,6 +192,7 @@ class Battle {
             // Win
             this.updateStorage();
             winLose.innerText = 'YOU WIN!';
+            defeatedMonstersText.innerText = `Monsters Defeated: ${defeatedMonsters + 1}`;
             cards.forEach(card => {
                 card.disabled = true;
                 card.classList.remove('card-hover');

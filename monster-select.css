@@ -3,13 +3,14 @@ body {
     font-family: sans-serif;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    background-image: url('https://cdn.glitch.global/c3047929-ef70-4941-99a6-ce2fdf88aac9/cards.jpg?v=1745447487532');
+    background-size: cover;
 }
 
 /* Header Styles */
 header {
     background-color: #1d1d1d;
-    color: #5ce1e6;
+    color: #ac55ac;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1.2rem;
     text-align: center;
@@ -36,7 +37,7 @@ main {
     height: 65vh;
     margin: auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -99,7 +100,7 @@ a {
     bottom: 10px;
     font-size: 2.5rem;
     border-radius: 30px;
-    background-color: blue;
+    background-color: hotpink;
     text-decoration: none;
     color: whitesmoke;
     padding: 10px;
@@ -107,24 +108,40 @@ a {
     border: 5px solid transparent;
 }
 
-a:hover {
-    cursor: pointer;
-    animation: border-flash 2s infinite;
-
-}
-
 .selected {
     transform: translateY(-20px);
 }
 
+.disabled {
+  background-color: grey;
+}
+
+.click:hover {
+  cursor: pointer;
+  animation: border-flash 2s infinite;
+}
+
+#finish {
+  width: 100vw;
+  height: 80%;
+  margin: auto;
+  display: none;
+  flex-direction: column;
+}
+
+h3 {
+  font-size: 3rem;
+  padding: 30px;
+}
+
 @keyframes border-flash {
     0% {
-        border: 5px solid gold;
+        border: 5px solid black;
     }
     50% {
-        border: 5px solid white;
+        border: 5px solid pink;
     }
     100% {
-        border: 5px solid gold;
+        border: 5px solid black;
     }
 }

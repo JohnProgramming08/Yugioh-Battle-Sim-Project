@@ -340,6 +340,7 @@ class Draw {
 }
 
 localStorage.setItem('enemyMonster', 'Drugs');
+localStorage.setItem('defeatedMonsters', 0);
 const draw = new Draw();
 drawHighlight.addEventListener('click', () => {
     draw.randomCard();
