@@ -1,0 +1,49 @@
+body {
+  background-image: url('https://cdn.glitch.global/c3047929-ef70-4941-99a6-ce2fdf88aac9/thanksLandscape.png?v=1745617270726');
+  background-size: cover;
+}
+
+#lose-info {
+  width: 55vw;
+  margin: 50px;
+  margin-top: 40vh;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border: 3px solid orange;
+  box-shadow: 10px 10px 15px rgba(255, 200, 200, 0.5);
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  padding: 20px;
+}
+
+h2 {
+  padding: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+a {
+  padding: 15px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  border-radius: 50px;
+  background-color: hotpink;
+  border: 4px solid transparent;
+  text-align: center;
+  text-decoration: none;
+  color: whitesmoke;
+  transition: 0.3s ease-in-out;
+}
+
+a:hover {
+  background-color: orange;
+
+}
