@@ -13,6 +13,7 @@ const playerMonster = JSON.parse(localStorage.getItem('selectedMonster'));
 const enemyMonster = JSON.parse(localStorage.getItem('enemyMonster'));
 const chosenCards = JSON.parse(localStorage.getItem('chosenCards'));
 const defeatedMonsters = JSON.parse(localStorage.getItem('defeatedMonsters'));
+localStorage.setItem('battleStarted', 1);
 
 class Monster {
     // Assign properties

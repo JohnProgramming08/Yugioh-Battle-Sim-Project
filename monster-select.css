@@ -1,71 +1,17 @@
-/* Global Styles */
-body {
-    font-family: sans-serif;
-    width: 100vw;
-    height: 100vh;
-    background-image: url('https://cdn.glitch.global/c3047929-ef70-4941-99a6-ce2fdf88aac9/cards.jpg?v=1745447487532');
-    background-size: cover;
-}
-
-/* Header Styles */
-header {
-    background-color: #1d1d1d;
-    color: #ac55ac;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 1.2rem;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 20vh;
-}
-
-/* Monster Card Styles */
-main {
-    width: 90vw;
-    height: 80vh;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-#cards {
-    width: 90vw;
-    height: 65vh;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.monster-card {
-    position: relative; 
-    width: 16vw;
-    color: #ccc;
-    font-size: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    margin: 7px;
-}
-
-.monster-card:hover {
+/* Chosen Monster Card Styles */
+.chosen-monster-card:hover {
     cursor: pointer;
     border: 5px solid white;
     border-radius: 10px;
 }
 
-.monster-card img {
+.chosen-monster-card img {
     width: 100%;
+    height: 100%;
     display: block;
 }
 
-.monster-info {
+.chosen-monster-info {
     width: 100%;
     font-size: 0.9rem;
     overflow: wrap;
@@ -82,66 +28,20 @@ main {
     z-index: 10;
 }
 
-.monster-card img:hover + .monster-info {
+.chosen-monster-card img:hover + .chosen-monster-info {
     display: block;
 }
 
-.monster-info:hover {
+.chosen-monster-info:hover {
     display: block;
     cursor: pointer;
 }
 
-.monster-info p {
+.chosen-monster-info p {
     border: 1px solid grey;
 }
 
-a {
-    position: fixed;
-    bottom: 10px;
-    font-size: 2.5rem;
-    border-radius: 30px;
-    background-color: hotpink;
-    text-decoration: none;
-    color: whitesmoke;
-    padding: 10px;
-    margin: auto;
-    border: 5px solid transparent;
-}
-
-.selected {
-    transform: translateY(-20px);
-}
-
-.disabled {
-  background-color: grey;
-}
-
-.click:hover {
-  cursor: pointer;
-  animation: border-flash 2s infinite;
-}
-
-#finish {
-  width: 100vw;
-  height: 80%;
-  margin: auto;
-  display: none;
-  flex-direction: column;
-}
-
-h3 {
-  font-size: 3rem;
-  padding: 30px;
-}
-
-@keyframes border-flash {
-    0% {
-        border: 5px solid black;
-    }
-    50% {
-        border: 5px solid pink;
-    }
-    100% {
-        border: 5px solid black;
-    }
+.selected-monster {
+    border: 4px solid purple;
+    border-radius: 10px;
 }
