@@ -6,16 +6,26 @@
         <title>Yu-Gi-Oh Battle Simulator</title>
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="battle.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Allerta Stencil" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-default.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
     </head>
     <body>
         <div class="section-div">
             <section id="enemy-section">
-                <p class="health-display" id="enemy-health">Enemy Health: </p>
-                <img id="enemy-img" src="https://dacardworld2.imgix.net/23584.jpg?auto=format%2Ccompress&fm=jpg&h=1800&ixlib=php-1.2.1&w=1800&s=18a4edeacc35f29f0fafc6395f1b7538">
+                <div class="health-display">
+                  <p>Enemy Health: </p>
+                  <p id="enemy-num" class="odometer"></p>
+                </div>
+                <img id="enemy-img" class="shake-class" src="https://dacardworld2.imgix.net/23584.jpg?auto=format%2Ccompress&fm=jpg&h=1800&ixlib=php-1.2.1&w=1800&s=18a4edeacc35f29f0fafc6395f1b7538">
             </section>
             <section id="player-section">
-                <p class="health-display" id="player-health">Your Health: </p>
-                <img id="player-img" src="https://vignette1.wikia.nocookie.net/yugioh/images/b/b3/DarkMagician-SD6-EN-C-UE.png/revision/latest?cb=20160331211958">
+                <div class="health-display">
+                  <p>Your Health: </p>
+                  <p id="player-num" class="odometer"></p>
+                </div>
+                <img id="player-img" class="shake-class" src="https://vignette1.wikia.nocookie.net/yugioh/images/b/b3/DarkMagician-SD6-EN-C-UE.png/revision/latest?cb=20160331211958">
             </section>
         </div>
         <div class="section-div">
@@ -37,6 +47,7 @@
                 <a id="yes" href="deck-select.html">Yes!</a>
             </div>
         </div>
+      <div id="turn-change-div"><h4><i>Turn One</i></h4></div>
         <div id="filter"></div>
         <script src="battle.js"></script>
     </body>

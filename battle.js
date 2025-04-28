@@ -1,7 +1,7 @@
 const historySection = document.getElementById('history-section');
 const cardDiv = document.getElementById('card-div');
-const enemyHealth = document.getElementById('enemy-health');
-const playerHealth = document.getElementById('player-health');
+const enemyHealth = document.getElementById('enemy-num');
+const playerHealth = document.getElementById('player-num');
 const resetDiv = document.getElementById('restart-div');
 const winLose = document.getElementById('win-lose');
 const filter = document.getElementById('filter');
@@ -13,6 +13,7 @@ const playerMonster = JSON.parse(localStorage.getItem('selectedMonster'));
 const enemyMonster = JSON.parse(localStorage.getItem('enemyMonster'));
 const chosenCards = JSON.parse(localStorage.getItem('chosenCards'));
 const defeatedMonsters = JSON.parse(localStorage.getItem('defeatedMonsters'));
+const turnDiv = document.getElementById('turn-change-div');
 localStorage.setItem('battleStarted', 1);
 
 class Monster {
@@ -41,11 +42,10 @@ class Monster {
         for (let move in this.abilities) {
             const ability = this.abilities[move];
             const delay = ability.currentCooldown === 0 ? 0 : ability.cooldown - ability.currentCooldown;
-            const buttonContent = `<h3>${ability.name}</h2>
-            <p>${ability.description}</p>
-            <p>${ability.damage} Damage</p>
-            <p class="cooldown">${ability.cooldown} Move Cooldown</p>
-            <p class="current-cooldown">${delay} Moves Left</p>`
+            const buttonContent = `<h3 class="ability-name">${ability.name}</h2>
+            <div class="damage"><i class="fas fa-exclamation-triangle"></i><p>${ability.damage} damage</p></div>
+            <div class="cooldown"><i class="fas fa-clock"></i><p>${delay} turn/s</p></div>
+            <p class="description">${ability.description}</p>`
             // Disable cards that are on cooldown
             cardDiv.innerHTML += (ability.currentCooldown > 0 && ability.currentCooldown != ability.cooldown) ? `<button class="card" data-name="${move}" disabled>${buttonContent}</button>` : `<button class="card card-hover" data-name="${move}">${buttonContent}</button>`;
         }
@@ -64,7 +64,7 @@ class Battle {
             move2: playerMonster.move2,
             move3: playerMonster.move3
         }
-        playerHealth.innerText = `Your Health: ${playerMonster.health}`;
+        playerHealth.innerText = playerMonster.health;
         playerImg.src = playerMonster.image;
         this.player = new Monster(playerMonster.health, playerMonster.speed, playerAbilities, playerMonster.name);
 
@@ -73,7 +73,7 @@ class Battle {
             move2: enemyMonster.move2,
             move3: enemyMonster.move3
         }
-        enemyHealth.innerText = `Enemy Health: ${enemyMonster.health}`;
+        enemyHealth.innerText = enemyMonster.health;
         enemyImg.src = enemyMonster.image;
         this.enemy = new Monster(enemyMonster.health, enemyMonster.speed, enemyAbilities, enemyMonster.name);
     }
@@ -125,6 +125,13 @@ class Battle {
 
     // Calculate and display the damage dealt by user
     calculateUserDamage(event) {
+        playerImg.classList.add('player-attack-class');
+        playerImg.classList.remove('shake-class');
+        setTimeout(() => {
+          playerImg.classList.remove('player-attack-class');
+          playerImg.classList.add('shake-class');
+        }, 2000);
+        
         const ability = this.userChooseAbility(event);
         if (ability.currentCooldown === 0 || ability.currentCooldown === ability.cooldown) {
             this.enemy.health -= ability.damage;
@@ -132,10 +139,9 @@ class Battle {
             ability.currentCooldown = 0;
 
             this.updateCooldowns(this.player, ability);
-
             cardDiv.innerHTML = '';
             this.player.displayAbilities();
-            enemyHealth.innerText = `Enemy Health: ${this.enemy.health}`;
+            enemyHealth.innerText = this.enemy.health;
             historySection.innerHTML += `<p class="player-move">\n${this.player.name} used ${ability.name} against ${this.enemy.name}, dealing ${ability.damage} damage.</p>`;
             this.playBattle();
         }
@@ -153,7 +159,7 @@ class Battle {
                     this.player.health = this.player.health < 0 ? 0 : this.player.health;
                     ability.currentCooldown = 0;
                     this.updateCooldowns(this.enemy, ability);
-                    playerHealth.innerText = `Your Health: ${this.player.health}`;
+                    playerHealth.innerText = this.player.health;
                     historySection.innerHTML += `<p class="enemy-move"> ${this.enemy.name} used ${ability.name} against ${this.player.name}, dealing ${ability.damage} damage.</p>`;
                     this.playBattle();
                     return;
@@ -173,10 +179,25 @@ class Battle {
 
         if (this.firstTurn === this.player && this.player.health > 0 && this.enemy.health > 0) {
             // Player turn
-            historySection.innerHTML += `<p>-----TURN ${this.turn}----- YOUR TURN </p>`;
-            cardDiv.innerHTML = '';
-            this.player.displayAbilities();
-            this.firstTurn = this.enemy;
+            cards.forEach(card => {
+                  card.disabled = true;
+                  card.classList.remove('card-hover');
+            });
+          
+            setTimeout(() => {
+                turnDiv.innerHTML = `<h4>Turn ${this.turn}</h4>`
+                turnDiv.style.display = 'block';
+                turnDiv.classList.add('slide-class');
+                historySection.innerHTML += `<p>-----TURN ${this.turn}----- YOUR TURN </p>`;
+            }, 1500);
+          
+            setTimeout(() => {
+                turnDiv.style.display = 'none';
+                turnDiv.classList.remove('slide-in');
+                cardDiv.innerHTML = '';
+                this.player.displayAbilities();
+                this.firstTurn = this.enemy;
+            }, 4485);
         } else if (this.player.health === 0) {
             // Lose
             this.updateStorage();
@@ -204,13 +225,33 @@ class Battle {
         }
          else {
             // Enemy turn 
-            historySection.innerHTML += `<p>-----TURN ${this.turn}----- ENEMY TURN</p>`;
-            setTimeout(() => {this.calculateComputerDamage();}, 5000);
+            setTimeout(() => {
+              turnDiv.innerHTML = `<h4>Turn ${this.turn}</h4>`
+              turnDiv.style.display = 'block';
+              turnDiv.classList.add('slide-class');
+              historySection.innerHTML += `<p>-----TURN ${this.turn}----- ENEMY TURN</p>`;
+            }, 1500)
+           
+            setTimeout(() => {
+              turnDiv.style.display = 'none';
+              turnDiv.classList.remove('slide-class');
+            }, 4480);
+            setTimeout(() => {
+                this.calculateComputerDamage();
+                enemyImg.classList.add('enemy-attack-class');
+                enemyImg.classList.remove('shake-class');
+            }, 7480);
+            
             cards.forEach(card => {
-                card.disabled = true;
-                card.classList.remove('card-hover');
+                  card.disabled = true;
+                  card.classList.remove('card-hover');
             });
             this.firstTurn = this.player;
+           
+           setTimeout(() => {
+                enemyImg.classList.remove('enemy-attack-class');
+                enemyImg.classList.add('shake-class');
+           }, 9480);
         }
     }
 }
