@@ -1,58 +1,58 @@
 /* Header Styles */
 header {
-    height: 40vh;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    color: white;
+  height: 40vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: white;
 }
 
 h1 {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 
 /* General Styles */
 body {
-    background-image: url('https://cdn.glitch.global/c3047929-ef70-4941-99a6-ce2fdf88aac9/darkMagicians.png?v=1745444413828');
-    background-size: cover;
-    height: 100vh;
+  background-image: url("https://cdn.glitch.global/c3047929-ef70-4941-99a6-ce2fdf88aac9/darkMagicians.png?v=1745444413828");
+  background-size: cover;
+  height: 100vh;
 }
 
 main {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Anchor Styles */
 a {
-    padding: 20px;
-    width: 25%;
-    font-size: 3rem;
-    color: #ccc;
-    background-color: #551155;
-    border: 3px solid transparent;
-    border-radius: 70px;
-    margin: 20px;
-    text-decoration: none;
-    text-align: center;
+  padding: 20px;
+  width: 25%;
+  font-size: 3rem;
+  color: #ccc;
+  background-color: #551155;
+  border: 3px solid transparent;
+  border-radius: 70px;
+  margin: 20px;
+  text-decoration: none;
+  text-align: center;
 }
 
 a:hover {
-    border: 3px solid white;
-    cursor: pointer;
-    background-color: rgb(184, 82, 184);
+  border: 3px solid white;
+  cursor: pointer;
+  background-color: rgb(184, 82, 184);
 }
 
 /* Mobile Styles */
 @media (max-width: 768px) {
-    h1 {
-        text-align: center;
-        font-size: 2rem;
-    }
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+  }
 
-    a {
-        width: 70%;
-    }
+  a {
+    width: 70%;
+  }
 }
