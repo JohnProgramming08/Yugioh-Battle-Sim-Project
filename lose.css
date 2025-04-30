@@ -1,5 +1,5 @@
 body {
-  background-image: url('https://cdn.glitch.global/c3047929-ef70-4941-99a6-ce2fdf88aac9/thanksLandscape.png?v=1745617270726');
+  background-image: url("https://cdn.glitch.global/c3047929-ef70-4941-99a6-ce2fdf88aac9/thanksLandscape.png?v=1745617270726");
   background-size: cover;
 }
 
@@ -45,5 +45,25 @@ a {
 
 a:hover {
   background-color: orange;
+}
 
+@media (max-width: 768px) {
+  body {
+    background: url("https://cdn.glitch.global/c3047929-ef70-4941-99a6-ce2fdf88aac9/thanksPortrait.png?v=1745965858321");
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    bottom: -50vh;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  #lose-info {
+    width: 80vw;
+    margin: auto;
+  }
 }

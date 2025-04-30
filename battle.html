@@ -1,43 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Yu-Gi-Oh Battle Simulator</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="battle.css">
-    </head>
-    <body>
-        <div class="section-div">
-            <section id="enemy-section">
-                <p class="health-display" id="enemy-health">Enemy Health: </p>
-                <img id="enemy-img" src="https://dacardworld2.imgix.net/23584.jpg?auto=format%2Ccompress&fm=jpg&h=1800&ixlib=php-1.2.1&w=1800&s=18a4edeacc35f29f0fafc6395f1b7538">
-            </section>
-            <section id="player-section">
-                <p class="health-display" id="player-health">Your Health: </p>
-                <img id="player-img" src="https://vignette1.wikia.nocookie.net/yugioh/images/b/b3/DarkMagician-SD6-EN-C-UE.png/revision/latest?cb=20160331211958">
-            </section>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yu-Gi-Oh Battle Simulator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="battle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Allerta Stencil"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
+  </head>
+  <body>
+    <div class="section-div">
+      <section id="enemy-section">
+        <div class="health-display">
+          <p>Enemy Health:</p>
+          <p id="enemy-num" class="odometer"></p>
         </div>
-        <div class="section-div">
-            <section id="history-section">
-                <p id="start-text">The Battle begins, you face off against Blue Eyes White Dragon!</p>
-            </section>
+        <img
+          id="enemy-img"
+          class="shake-class"
+          src="https://dacardworld2.imgix.net/23584.jpg?auto=format%2Ccompress&fm=jpg&h=1800&ixlib=php-1.2.1&w=1800&s=18a4edeacc35f29f0fafc6395f1b7538"
+        />
+      </section>
+      <section id="player-section">
+        <div class="health-display">
+          <p>Your Health:</p>
+          <p id="player-num" class="odometer"></p>
+        </div>
+        <img
+          id="player-img"
+          class="shake-class"
+          src="https://vignette1.wikia.nocookie.net/yugioh/images/b/b3/DarkMagician-SD6-EN-C-UE.png/revision/latest?cb=20160331211958"
+        />
+      </section>
+    </div>
+    <div class="section-div">
+      <section id="history-section">
+        <p id="start-text">
+          The Battle begins, you face off against Blue Eyes White Dragon!
+        </p>
+      </section>
 
-            <section id="move-section">
-                <h2 id="move-header">ABILITIES</h2>
-                <div id="card-div"></div>
-            </section>
-        </div>
-        <div id="restart-div">
-            <h3 id="win-lose"></h3>
-            <h3 id="monsters-defeated"></h3>
-            <h3>Would you like to play again?</h3>
-            <div id="options">
-                <a id="no" href="index.html">No</a>
-                <a id="yes" href="deck-select.html">Yes!</a>
-            </div>
-        </div>
-        <div id="filter"></div>
-        <script src="battle.js"></script>
-    </body>
+      <section id="move-section">
+        <h2 id="move-header">ABILITIES</h2>
+        <div id="card-div"></div>
+      </section>
+    </div>
+    <div id="restart-div">
+      <h3 id="win-lose"></h3>
+      <h3 id="monsters-defeated"></h3>
+      <h3>Would you like to keep playing?</h3>
+      <div id="options">
+        <a id="no" href="index.html">No</a>
+        <a id="yes" href="deck-select.html">Yes!</a>
+      </div>
+    </div>
+    <div id="turn-change-div">
+      <h4><i>Turn One</i></h4>
+    </div>
+    <div id="filter"></div>
+    <script src="battle.js"></script>
+  </body>
 </html>
